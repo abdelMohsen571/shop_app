@@ -89,10 +89,10 @@ class Products {
     inFavorites = json['in_favorites'];
     inCart = json['in_cart'];
   }
-  int? id;
-  int? price;
-  int? oldPrice;
-  int? discount;
+  num? id;
+  num? price;
+  num? oldPrice;
+  num? discount;
   String? image;
   String? name;
   String? description;
@@ -130,7 +130,7 @@ class Banners {
     category = json['category'];
     product = json['product'];
   }
-  int? id;
+  num? id;
   String? image;
   dynamic category;
   dynamic product;

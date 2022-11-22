@@ -12,12 +12,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ShopAppCubit, ShopAppState>(
       listener: (context, state) {
-        // TODO: implement listener
+        // TODO: implement listener+
+        // TODO:
       },
       builder: (context, state) {
         var cubit = ShopAppCubit.get(context);
         return Scaffold(
           appBar: AppBar(
+            title: Text('Shop App',
+                style:
+                    TextStyle(color: Colors.pink, fontWeight: FontWeight.bold)),
             actions: [
               IconButton(
                   onPressed: () {
@@ -41,9 +45,9 @@ class HomeScreen extends StatelessWidget {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.apps), label: 'Favourite'),
+                  icon: Icon(Icons.apps), label: 'Category'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite), label: 'Search'),
+                  icon: Icon(Icons.favorite), label: 'Favourite'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings), label: 'Settings'),
             ],

@@ -50,6 +50,7 @@ dependencies:
   flutter_hex_color: ^2.0.0
   smooth_page_indicator: ^1.0.0+2
   fluttertoast: ^8.1.1
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:

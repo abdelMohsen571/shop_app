@@ -24,7 +24,7 @@ class ApiManager {
       'Authorization': token,
     };
     Response response = await dio.get(url);
-    return response;
+    return response.data;
   }
 
   static Future<Response> postData({

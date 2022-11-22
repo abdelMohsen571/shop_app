@@ -12,3 +12,7 @@ class LoadingHomeDataState extends ShopAppState {}
 class SuccessHomeDataState extends ShopAppState {}
 
 class ErrorHomeDataState extends ShopAppState {}
+
+class SuccessCategoroiesDataState extends ShopAppState {}
+
+class ErrorCategoroiesDataState extends ShopAppState {}

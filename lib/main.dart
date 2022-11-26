@@ -18,7 +18,9 @@ void main() async {
   Widget widget;
   bool onBoarding = SharedPref.getData('onBoarding');
   print(onBoarding);
-  token = SharedPref.getData('token');
+  if (SharedPref.getData('token') != null) {
+    token = SharedPref.getData('token');
+  }
   if (onBoarding != null) {
     if (token != null) {
       widget = HomeScreen();
@@ -43,7 +45,9 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ShopAppCubit()
         ..getHomeData()
-        ..getCategoryData(),
+        ..getCategoryData()
+        ..getFavouriteData()
+        ..getUserData(),
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

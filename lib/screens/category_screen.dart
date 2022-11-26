@@ -17,12 +17,12 @@ class CategoryScreen extends StatelessWidget {
         return ListView.separated(
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) =>
-                buildCategoryItem(cubit.categoriesModel.data.data[index]),
+                buildCategoryItem(cubit.categoriesModel!.data.data[index]),
             separatorBuilder: (context, index) => Container(
                   height: 1,
                   color: Colors.grey,
                 ),
-            itemCount: cubit.categoriesModel.data.data.length);
+            itemCount: cubit.categoriesModel!.data.data.length);
       },
     );
   }

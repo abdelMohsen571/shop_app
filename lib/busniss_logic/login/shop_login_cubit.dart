@@ -12,7 +12,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
   ShopLoginCubit() : super(ShopLoginInitial());
 
   static ShopLoginCubit get(context) => BlocProvider.of(context);
-  LoginModel? loginModel;
+  UserModel? loginModel;
   void userLogin({
     @required String? email,
     @required String? password,
@@ -21,7 +21,7 @@ class ShopLoginCubit extends Cubit<ShopLoginState> {
 
     ApiManager.postData(data: {'email': email, 'password': password})
         .then((value) {
-      loginModel = LoginModel.fromJson(value.data);
+      loginModel = UserModel.fromJson(value.data);
       emit(loginScucessState(loginModel!));
 
       print(loginModel?.data?.name);

@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop_app/layouts/home_screen.dart';
 import 'package:shop_app/layouts/register_screen.dart';
 import 'package:shop_app/shared/component.dart';
+import 'package:shop_app/shared/strings.dart';
 import 'package:shop_app/shared_pref.dart';
 
 import '../busniss_logic/login/shop_login_cubit.dart';
@@ -28,6 +29,7 @@ class LoginScreen extends StatelessWidget {
               showToast(state.loginModel.message!, ToastState.SUCCES);
               SharedPref.putData('token', state.loginModel.data!.token)
                   .then((value) {
+                token = state.loginModel.data!.token as String;
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => HomeScreen()));
               });

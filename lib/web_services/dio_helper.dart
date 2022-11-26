@@ -17,6 +17,7 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     String? token,
+    Map<String, dynamic>? data,
   }) async {
     dio.options.headers = {
       'lang': 'en',
@@ -28,5 +29,19 @@ class DioHelper {
       queryParameters: query,
     );
     return response;
+  }
+
+  static Future<Response> putData({
+    required String url,
+    Map<String, dynamic>? query,
+    String? token,
+    Map<String, dynamic>? data,
+  }) async {
+    dio.options.headers = {
+      'lang': 'en',
+      'Content-Type': 'application/json',
+      if (token != null) 'Authorization': token,
+    };
+    return dio.put(url, queryParameters: query, data: data);
   }
 }

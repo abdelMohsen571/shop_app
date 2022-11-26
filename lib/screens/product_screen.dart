@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/busniss_logic/shop/shop_app_cubit.dart';
 import 'package:shop_app/busniss_logic/shop/shop_app_cubit.dart';
+import 'package:shop_app/shared/component.dart';
 import 'package:shop_app/web_services/models/home_model/home_model.dart';
 
 import '../web_services/models/categories_model.dart';
@@ -14,19 +15,25 @@ class ProductScreen extends StatelessWidget {
     return BlocConsumer<ShopAppCubit, ShopAppState>(
       listener: (context, state) {
         // TODO: implement listener
+        if (state is SuccessChangeFavouriteDataState) {
+          if (state.changeFavouriteModel.status == false) {
+            showToast(state.changeFavouriteModel.message, ToastState.ERROR);
+          }
+        }
       },
       builder: (context, state) {
         var cubit = ShopAppCubit.get(context);
         return ConditionalBuilder(
             condition: cubit.homeModel != null && cubit.categoriesModel != null,
-            builder: (context) =>
-                productBuilder(cubit.homeModel, cubit.categoriesModel),
+            builder: (context) => productBuilder(cubit.homeModel as HomeModel,
+                cubit.categoriesModel as CategoriesModel, context),
             fallback: (context) => Center(child: CircularProgressIndicator()));
       },
     );
   }
 
-  Widget productBuilder(HomeModel homeModel, CategoriesModel categoriesModel) =>
+  Widget productBuilder(
+          HomeModel homeModel, CategoriesModel categoriesModel, context) =>
       SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -95,14 +102,15 @@ class ProductScreen extends StatelessWidget {
                 childAspectRatio: 1 / 1.59,
                 children: List.generate(
                   homeModel.data!.products!.length,
-                  (index) => builldGridItem(homeModel.data!.products![index]),
+                  (index) =>
+                      builldGridItem(homeModel.data!.products![index], context),
                 ),
               ),
             ),
           ],
         ),
       );
-  Widget builldGridItem(Products productsModel) => Container(
+  Widget builldGridItem(Products productsModel, context) => Container(
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(
@@ -163,9 +171,22 @@ class ProductScreen extends StatelessWidget {
                   ),
                 Spacer(),
                 IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: Icon(Icons.favorite_border))
+                    onPressed: () {
+                      ShopAppCubit.get(context)
+                          .changeFavourite(productsModel.id as int);
+                      // print(productsModel.id);
+                    },
+                    icon: CircleAvatar(
+                        backgroundColor: ShopAppCubit.get(context)
+                                    .favourites[productsModel.id] ??
+                                true
+                            ? Colors.pink
+                            : Colors.grey,
+                        radius: 15,
+                        child: Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+                        )))
               ],
             ),
           ),

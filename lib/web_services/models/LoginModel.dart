@@ -1,20 +1,20 @@
-import '../Data.dart';
+import '../user_model.dart';
 
-class LoginModel {
-  LoginModel({
+class UserModel {
+  UserModel({
     this.status,
     this.message,
     this.data,
   });
 
-  LoginModel.fromJson(dynamic json) {
+  UserModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserData.fromJson(json['data']) : null;
   }
   bool? status;
   String? message;
-  Data? data;
+  UserData? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -8,7 +8,7 @@ class ShopLoginInitial extends ShopLoginState {}
 class loginLoadingState extends ShopLoginState {}
 
 class loginScucessState extends ShopLoginState {
-  final LoginModel loginModel;
+  final UserModel loginModel;
 
   loginScucessState(this.loginModel);
 }
